@@ -50,9 +50,8 @@ function doFit(){const t=document.getElementById('t');if(!t)return;
   while(t.scrollWidth>t.clientWidth+1&&fs>50){fs-=2;t.style.fontSize=fs+'px';}
   let lsp=3;while(t.scrollWidth>t.clientWidth+1&&lsp>-5){lsp-=1;t.style.letterSpacing=lsp+'px';}
   const sub=document.getElementById('s');let sls=Math.round(0.18*30);while(sub&&sub.scrollWidth>sub.clientWidth&&sls>-4){sls-=1;sub.style.letterSpacing=sls+'px';}}
-async function render(){
+function draw(_d){
   try{
-    const _d=await L('aisles');
     const all=Array.isArray(_d)?_d:(_d.aisles||[]);
     const a=all.find(x=>String(x.number)===String(N))||all[0];
     const p=a.promo||{};
@@ -77,9 +76,10 @@ async function render(){
     doFit();fit();
   }catch(e){document.getElementById('card').innerHTML=`<div class="err">content unavailable — retrying…</div>`;}
 }
+let lastHash='';
+async function poll(){try{const _d=await L('aisles');const h=JSON.stringify(_d);if(h!==lastHash){lastHash=h;draw(_d);}}catch(e){}}
 addEventListener('resize',fit);
-(async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await render(); })();
-setInterval(render,45000);
-// signage players don't always keep timers/fetch alive — a full reload every 90s guarantees edits land
-setInterval(()=>location.reload(),90000);
+(async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await poll(); })();
+setInterval(poll,5000);                     // pick up admin edits within ~5s, re-render only when content changed (no flicker)
+setInterval(()=>location.reload(),300000);  // safety: full reload every 5 min in case the player suspends timers
 </script></body></html>

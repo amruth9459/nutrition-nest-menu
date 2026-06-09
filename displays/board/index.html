@@ -57,9 +57,8 @@ const col=(title,items)=>`<div class="lcol"><div class="lh">${esc(title)}</div>$
 const pill=a=>`<div class="arow"><span class="an">${esc(a.name)}</span><span class="ap">${esc(a.price)}</span></div>`;
 const myg=g=>`<div class="myrow"><span class="myl">${esc(g.name)}</span><span class="myi">${(g.items||[]).map(esc).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}</span><span class="myn">${esc(g.note)}</span></div>`;
 function fit(){const k=Math.min(innerWidth/3840,innerHeight/2160);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-3840*k)/2}px,${(innerHeight-2160*k)/2}px) scale(${k})`;}
-async function render(){
+function draw(d){
   try{
-    const d=await L('board');
     document.getElementById('board').innerHTML=`
       <header><img class="wm" src="/assets/logo/wordmark-white.png" alt="Nutrition Nest"><div class="mt">${esc(d.menuTitle||'The Elixir Menu')}</div></header>
       <div class="eyebrow">${esc(d.eyebrow||'Choose by how you want to feel')}</div>
@@ -77,8 +76,10 @@ async function render(){
     fit();
   }catch(e){document.getElementById('board').innerHTML=`<div class="err">content unavailable — retrying…</div>`;}
 }
+let lastHash='';
+async function poll(){try{const d=await L('board');const h=JSON.stringify(d);if(h!==lastHash){lastHash=h;draw(d);}}catch(e){}}
 addEventListener('resize',fit);
-(async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await render(); fit(); })();
-setInterval(render,45000); // re-fetch content every 45s so edits appear automatically
-setInterval(()=>location.reload(),120000); // full reload every 2 min — signage players don't always keep timers/fetch alive
+(async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await poll(); fit(); })();
+setInterval(poll,5000);                     // pick up admin edits within ~5s, re-render only when content changed (no flicker)
+setInterval(()=>location.reload(),300000);  // safety: full reload every 5 min in case the player suspends timers
 </script></body></html>
