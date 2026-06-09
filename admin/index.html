@@ -1,18 +1,93 @@
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nutrition Nest — Signage Admin</title>
-</head><body>
-<!-- Netlify Identity widget: gives managers email/password login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<!-- Decap CMS: the admin UI, configured by /admin/config.yml -->
-<script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,'Segoe UI',Roboto,sans-serif}
+:root{--bg:#0c0c0c;--card:#161514;--bronze:#a8986a;--ink:#f1ede4;--muted:#9b968b;--line:rgba(168,152,106,.28)}
+body{background:var(--bg);color:var(--ink);min-height:100vh}
+#login{max-width:380px;margin:14vh auto;padding:0 20px;text-align:center}
+#login img{width:200px;margin-bottom:24px;opacity:.95}
+#login input{width:100%;padding:13px 14px;border:1px solid var(--line);background:#000;color:var(--ink);border-radius:8px;font-size:16px;margin-bottom:12px}
+button{background:var(--bronze);color:#15120a;border:0;padding:12px 22px;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer}
+button.ghost{background:transparent;color:var(--bronze);border:1px solid var(--line)}
+button:disabled{opacity:.5;cursor:default}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+.bar img{height:30px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:8px 16px;border:1px solid var(--line);border-radius:20px;color:var(--muted);cursor:pointer;font-size:14px;background:transparent}
+.tab.on{background:var(--bronze);color:#15120a;border-color:var(--bronze)}
+.wrap{max-width:760px;margin:0 auto;padding:24px 22px 120px}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+legend{padding:0 8px;color:var(--bronze);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.fld{margin:10px 0}
+.fld>label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;text-transform:capitalize}
+.fld input[type=text],.fld textarea{width:100%;padding:9px 11px;border:1px solid var(--line);background:#000;color:var(--ink);border-radius:7px;font-size:15px}
+.fld textarea{min-height:60px;resize:vertical}
+.item{border-left:2px solid var(--line);padding:6px 0 6px 14px;margin:10px 0;position:relative}
+.item .rm{position:absolute;right:0;top:6px;background:transparent;color:#c77;border:1px solid #533;border-radius:6px;padding:3px 9px;font-size:12px}
+.add{background:transparent;color:var(--bronze);border:1px dashed var(--line);padding:8px 14px;border-radius:8px;font-size:13px;width:100%}
+.imgrow{display:flex;align-items:center;gap:12px}
+.imgrow img{width:80px;height:80px;object-fit:cover;border-radius:8px;background:#000;border:1px solid var(--line)}
+.save{position:fixed;bottom:0;left:0;right:0;padding:14px 22px;background:var(--bg);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.status{color:var(--muted);font-size:14px}
+.status.ok{color:#7cba8b}.status.err{color:#d98}
+</style></head>
+<body>
+<div id="login">
+  <img src="/assets/logo/wordmark-white.png" alt="Nutrition Nest">
+  <input id="pw" type="password" placeholder="Admin password" autocomplete="current-password">
+  <button id="enter" style="width:100%">Enter</button>
+  <p class="status" id="lmsg" style="margin-top:12px"></p>
+</div>
+<div id="app" style="display:none">
+  <div class="bar"><img src="/assets/logo/wordmark-white.png" alt=""><div class="tabs" id="tabs"></div></div>
+  <div class="wrap" id="form"></div>
+  <div class="save"><span class="status" id="msg">Edit anything, then publish — screens update within ~45s.</span><button id="publish">Save &amp; Publish</button></div>
+</div>
 <script>
-  // after a manager confirms their invite, send them straight into the admin
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', user => {
-      if (!user) window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-    });
-  }
-</script>
-</body></html>
+const FILES=[{n:'board',l:'Juice Board'},{n:'drinks',l:'Reel Drinks'},{n:'dishes',l:'Restaurant + Menu'},{n:'aisles',l:'Aisles'}];
+let DATA={}, cur='board', uploads=[], pw='';
+const pretty=k=>k.replace(/([A-Z])/g,' $1').replace(/[_-]/g,' ').replace(/\bfor\b/,'descriptor').trim();
+async function loadJSON(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j)return j;}}catch(e){}
+  try{const r=await fetch('/content/'+n+'.json?t='+Date.now(),{cache:'no-store'});return await r.json();}catch(e){return {};}}
+function input(val,onin,multi){const el=document.createElement(multi?'textarea':'input');if(!multi)el.type='text';el.value=val==null?'':val;el.oninput=()=>onin(el.value);return el;}
+function imgField(obj,key){const wrap=document.createElement('div');wrap.className='imgrow';
+  const img=document.createElement('img');img.src=obj[key]||'';wrap.appendChild(img);
+  const f=document.createElement('input');f.type='file';f.accept='image/*,video/mp4';
+  f.onchange=()=>{const file=f.files[0];if(!file)return;const rd=new FileReader();rd.onload=()=>{const b64=rd.result.split(',')[1];const safe=file.name.toLowerCase().replace(/[^a-z0-9.]+/g,'-');const path='uploads/'+Date.now().toString(36)+'-'+safe;uploads.push({path,base64:b64});obj[key]='/api/media/'+path;img.src=rd.result;};rd.readAsDataURL(file);};
+  wrap.appendChild(f);return wrap;}
+function node(val,parent,key,host){
+  if(key==='img'||key==='image'){const f=document.createElement('div');f.className='fld';const l=document.createElement('label');l.textContent='Photo / video';f.appendChild(l);f.appendChild(imgField(parent,key));host.appendChild(f);return;}
+  if(Array.isArray(val)){const fs=document.createElement('fieldset');const lg=document.createElement('legend');lg.textContent=pretty(key);fs.appendChild(lg);
+    const list=document.createElement('div');fs.appendChild(list);
+    const draw=()=>{list.innerHTML='';val.forEach((it,i)=>{const row=document.createElement('div');row.className='item';const rm=document.createElement('button');rm.className='rm';rm.textContent='✕';rm.onclick=()=>{val.splice(i,1);draw();};row.appendChild(rm);node(it,val,i,row);list.appendChild(row);});};
+    draw();
+    const add=document.createElement('button');add.className='add';add.textContent='+ Add';add.onclick=()=>{let tpl=val.length?JSON.parse(JSON.stringify(val[val.length-1])):'';if(typeof tpl==='object'&&tpl)clearStrings(tpl);else tpl='';val.push(tpl);draw();};
+    fs.appendChild(add);host.appendChild(fs);return;}
+  if(val&&typeof val==='object'){const fs=document.createElement('fieldset');if(typeof key==='string'){const lg=document.createElement('legend');lg.textContent=pretty(key);fs.appendChild(lg);}Object.keys(val).forEach(k=>node(val[k],val,k,fs));host.appendChild(fs);return;}
+  const f=document.createElement('div');f.className='fld';const l=document.createElement('label');l.textContent=pretty(String(key));f.appendChild(l);const multi=typeof val==='string'&&(val.length>60||key==='ingredients'||key==='concept'||key==='benefit');f.appendChild(input(val,v=>parent[key]=v,multi));f.querySelector('input,textarea');host.appendChild(f);
+}
+function clearStrings(o){for(const k in o){if(typeof o[k]==='string')o[k]='';else if(Array.isArray(o[k]))o[k]=[];else if(o[k]&&typeof o[k]==='object')clearStrings(o[k]);}}
+function render(){const host=document.getElementById('form');host.innerHTML='';node(DATA[cur],DATA,cur,host);
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.n===cur));}
+function buildTabs(){const t=document.getElementById('tabs');t.innerHTML='';FILES.forEach(f=>{const b=document.createElement('div');b.className='tab';b.dataset.n=f.n;b.textContent=f.l;b.onclick=async()=>{cur=f.n;if(!DATA[cur])DATA[cur]=await loadJSON(cur);uploads=[];render();};t.appendChild(b);});}
+async function enter(){pw=document.getElementById('pw').value;const lmsg=document.getElementById('lmsg');lmsg.textContent='Checking…';
+  // probe: a no-op save attempt distinguishes wrong-pw (401) / needs-setup (503) / ok
+  const r=await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});
+  if(r.status===503){ // first run: set this password
+    const s=await fetch('/api/setup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});
+    if(!s.ok){lmsg.textContent='Setup failed';return;} }
+  else if(r.status===401){lmsg.className='status err';lmsg.textContent='Wrong password';return;}
+  // ok (or just-set): open the app
+  sessionStorage.setItem('nnpw',pw);
+  document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';
+  buildTabs();DATA[cur]=await loadJSON(cur);render();}
+async function publish(){const btn=document.getElementById('publish'),msg=document.getElementById('msg');btn.disabled=true;msg.className='status';msg.textContent='Publishing…';
+  const r=await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw,file:cur,content:DATA[cur],uploads})});
+  const j=await r.json().catch(()=>({}));btn.disabled=false;
+  if(r.ok){uploads=[];msg.className='status ok';msg.textContent='✓ Saved — screens update within ~45s.';}
+  else{msg.className='status err';msg.textContent='Error: '+(j.error||r.status);}}
+document.getElementById('enter').onclick=enter;
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')enter();});
+document.getElementById('publish').onclick=publish;
+</script></body></html>

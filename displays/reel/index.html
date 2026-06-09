@@ -64,6 +64,8 @@ html,body{width:100vw;height:100vh;background:#000;overflow:hidden}
   <div class="layer" id="A"></div><div class="layer" id="B"></div>
 </div></div>
 <script>
+async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j!=null)return j;}}catch(e){}const r=await fetch('/content/'+n+'.json?t='+Date.now(),{cache:'no-store'});return r.json();}
+
 const WM='/assets/logo/wordmark-white.png';
 const ACCENT=['#C0354E','#9A5B3A','#3F7A4B','#3B53B0','#7A4A2A','#B23A6E','#C77A2E','#6B5B2E','#5E3B2A','#8A5A2B','#8A6A2E','#3E8A5C','#C58A1E','#7A2E8A','#B98A52','#A9803F'];
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -74,7 +76,7 @@ function drink(D,i){const dr=D.drinks[i];const a=ACCENT[i]||'#a8986a';return `<d
 function cta(D){return `<div class="cta"><img class="cta-wordmark" src="${WM}" alt="Nutrition Nest"><div class="cta-line">${esc(D.cta)}</div><div class="cta-flourish">${esc(D.brand)} · Nutrition Nest</div></div>`;}
 let frames=[],idx=0,cur=0,layers;
 async function load(){
-  const D=await(await fetch('/content/drinks.json?t='+Date.now(),{cache:'no-store'})).json();
+  const D=await L('drinks');
   document.getElementById('bt').textContent=D.brand||'';
   frames=[intro(D),paths(D),...D.drinks.map((_,i)=>drink(D,i)),cta(D)];
 }

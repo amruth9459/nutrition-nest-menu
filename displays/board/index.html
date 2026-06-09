@@ -42,6 +42,8 @@ header{display:flex;align-items:flex-end;justify-content:space-between;padding-b
 <body>
 <div id="scaler"><div class="board" id="board"></div></div>
 <script>
+async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j!=null)return j;}}catch(e){}const r=await fetch('/content/'+n+'.json?t='+Date.now(),{cache:'no-store'});return r.json();}
+
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const pcell=p=>`<div class="pcell"><div class="phead"><span class="pn">${esc(p.pathway)}</span><span class="pf">${esc(p.for)}</span></div>${(p.drinks||[]).map(x=>`<div class="drow"><span class="dn">${esc(x.name)}</span><span class="dp">${esc(x.price)}</span></div>`).join('')}</div>`;
 const col=(title,items)=>`<div class="lcol"><div class="lh">${esc(title)}</div>${(items||[]).map(x=>`<div class="lrow"><span class="ln">${esc(x.name)}</span><span class="lp">${esc(x.price)}</span></div>`).join('')}</div>`;
@@ -49,7 +51,7 @@ const pill=a=>`<div class="arow"><span class="an">${esc(a.name)}</span><span cla
 function fit(){const k=Math.min(innerWidth/3840,innerHeight/2160);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-3840*k)/2}px,${(innerHeight-2160*k)/2}px) scale(${k})`;}
 async function render(){
   try{
-    const d=await(await fetch('/content/board.json?t='+Date.now(),{cache:'no-store'})).json();
+    const d=await L('board');
     document.getElementById('board').innerHTML=`
       <header><img class="wm" src="/assets/logo/wordmark-white.png" alt="Nutrition Nest"><div class="mt">${esc(d.menuTitle||'The Elixir Menu')}</div></header>
       <div class="eyebrow">${esc(d.eyebrow||'Choose by how you want to feel')}</div>

@@ -49,10 +49,12 @@ footer{text-align:center;margin-top:32px;font-family:'GillSemi',sans-serif;font-
 </style></head>
 <body><div class="wrap" id="wrap"><div class="err">Loading menu…</div></div>
 <script>
+async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j!=null)return j;}}catch(e){}const r=await fetch('/content/'+n+'.json?t='+Date.now(),{cache:'no-store'});return r.json();}
+
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 async function render(){
   try{
-    const d=await(await fetch('/content/dishes.json?t='+Date.now(),{cache:'no-store'})).json();
+    const d=await L('dishes');
     const stations=[];for(const x of d.dishes)if(!stations.includes(x.station))stations.push(x.station);
     const dishCard=x=>`<article class="dish"><div class="dish-img"><img loading="lazy" src="${esc(x.img)}" alt="${esc(x.name)}"></div><div class="dish-body"><h3>${esc(x.name)}</h3><div class="tags"><span class="path">${esc(x.pathway)}</span><span class="kcal">${esc(x.kcal)} kcal</span></div><p class="benefit">${esc(x.benefit)}</p></div></article>`;
     const station=st=>`<section class="station"><h2 class="station-h">${esc(st)}</h2>${d.dishes.filter(x=>x.station===st).map(dishCard).join('')}</section>`;

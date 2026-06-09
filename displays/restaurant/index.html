@@ -57,6 +57,8 @@ html,body{width:100vw;height:100vh;background:#000;overflow:hidden}
 <body>
 <div id="scaler"><div class="stage"><div class="layer" id="A"></div><div class="layer" id="B"></div></div></div>
 <script>
+async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j!=null)return j;}}catch(e){}const r=await fetch('/content/'+n+'.json?t='+Date.now(),{cache:'no-store'});return r.json();}
+
 const BM='/assets/logo/brandmark-white.png',WM='/assets/logo/wordmark-white.png';
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const crest=`<div class="crest"><img class="bm" src="${BM}" alt=""><img class="wm" src="${WM}" alt="Nutrition Nest"></div>`;
@@ -67,7 +69,7 @@ function how(D){return `<div class="teach-bg"></div>${crest}<div class="frame-ru
 function paths(D){return `<div class="teach-bg"></div>${crest}<div class="frame-rule"></div><div class="wrap"><div class="eyebrow">CHOOSE HOW YOU WANT TO FEEL</div><h1 class="heading">EIGHT WELLNESS PATHWAYS</h1><div class="pgrid">${(D.pathways||[]).map(p=>`<div class="pcell"><div class="nm">${esc(p.name)}</div><div class="ds">${esc(p.for)}</div></div>`).join('')}</div></div>`;}
 function cta(D){return `<div class="teach-bg"></div><div class="frame-rule"></div><div class="wrap"><img class="bigwm" src="${WM}" alt="Nutrition Nest"><h1 class="cconcept">${esc(D.concept)}</h1><div class="crule"></div><div class="cta-line">${esc(D.cta)}</div></div>`;}
 let frames=[],idx=0,cur=0,layers;
-async function load(){const D=await(await fetch('/content/dishes.json?t='+Date.now(),{cache:'no-store'})).json();frames=[intro(D),...D.dishes.map(dish),how(D),paths(D),cta(D)];}
+async function load(){const D=await L('dishes');frames=[intro(D),...D.dishes.map(dish),how(D),paths(D),cta(D)];}
 function tick(){const n=layers[1-cur];n.innerHTML=frames[idx%frames.length];n.classList.add('on');layers[cur].classList.remove('on');cur=1-cur;idx++;}
 addEventListener('resize',fit);
 (async()=>{layers=[document.getElementById('A'),document.getElementById('B')];if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}}await load();fit();tick();setInterval(tick,5600);setInterval(load,120000);})();

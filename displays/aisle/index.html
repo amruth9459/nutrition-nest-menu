@@ -39,13 +39,15 @@ html,body{width:100vw;height:100vh;background:#000;overflow:hidden}
 <body>
 <div id="scaler"><div class="card" id="card"></div></div>
 <script>
+async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j!=null)return j;}}catch(e){}const r=await fetch('/content/'+n+'.json?t='+Date.now(),{cache:'no-store'});return r.json();}
+
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const N=new URLSearchParams(location.search).get('n')||'1';
 function fit(){const k=Math.min(innerWidth/540,innerHeight/1920);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-540*k)/2}px,${(innerHeight-1920*k)/2}px) scale(${k})`;}
 function doFit(){const t=document.getElementById('t');if(!t)return;const W=t.clientWidth;let lsp=3;while(t.scrollWidth>W&&lsp>-7){lsp-=1;t.style.letterSpacing=lsp+'px';}const sub=document.getElementById('s');let sls=Math.round(0.18*30);while(sub&&sub.scrollWidth>sub.clientWidth&&sls>-4){sls-=1;sub.style.letterSpacing=sls+'px';}}
 async function render(){
   try{
-    const _d=await(await fetch('/content/aisles.json?t='+Date.now(),{cache:'no-store'})).json();
+    const _d=await L('aisles');
     const all=Array.isArray(_d)?_d:(_d.aisles||[]);
     const a=all.find(x=>String(x.number)===String(N))||all[0];
     const p=a.promo||{};
