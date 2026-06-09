@@ -44,7 +44,12 @@ async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const N=new URLSearchParams(location.search).get('n')||'1';
 function fit(){const k=Math.min(innerWidth/540,innerHeight/1920);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-540*k)/2}px,${(innerHeight-1920*k)/2}px) scale(${k})`;}
-function doFit(){const t=document.getElementById('t');if(!t)return;const W=t.clientWidth;let lsp=3;while(t.scrollWidth>W&&lsp>-7){lsp-=1;t.style.letterSpacing=lsp+'px';}const sub=document.getElementById('s');let sls=Math.round(0.18*30);while(sub&&sub.scrollWidth>sub.clientWidth&&sls>-4){sls-=1;sub.style.letterSpacing=sls+'px';}}
+function doFit(){const t=document.getElementById('t');if(!t)return;
+  // shrink the title font-size until it fits its width (handles long single words e.g. INTERNATIONAL)
+  let fs=78;t.style.fontSize=fs+'px';t.style.letterSpacing='';
+  while(t.scrollWidth>t.clientWidth+1&&fs>50){fs-=2;t.style.fontSize=fs+'px';}
+  let lsp=3;while(t.scrollWidth>t.clientWidth+1&&lsp>-5){lsp-=1;t.style.letterSpacing=lsp+'px';}
+  const sub=document.getElementById('s');let sls=Math.round(0.18*30);while(sub&&sub.scrollWidth>sub.clientWidth&&sls>-4){sls-=1;sub.style.letterSpacing=sls+'px';}}
 async function render(){
   try{
     const _d=await L('aisles');
@@ -75,4 +80,6 @@ async function render(){
 addEventListener('resize',fit);
 (async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await render(); })();
 setInterval(render,45000);
+// signage players don't always keep timers/fetch alive — a full reload every 90s guarantees edits land
+setInterval(()=>location.reload(),90000);
 </script></body></html>

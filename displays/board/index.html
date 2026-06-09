@@ -80,4 +80,5 @@ async function render(){
 addEventListener('resize',fit);
 (async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await render(); fit(); })();
 setInterval(render,45000); // re-fetch content every 45s so edits appear automatically
+setInterval(()=>location.reload(),120000); // full reload every 2 min — signage players don't always keep timers/fetch alive
 </script></body></html>
