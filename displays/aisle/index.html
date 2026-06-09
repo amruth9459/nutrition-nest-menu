@@ -74,6 +74,7 @@ function draw(_d){
         <div class="logo"><img src="/assets/logo/brandmark-white.png" alt="n"></div>
       </div>`;
     doFit();fit();
+    const v=document.querySelector('video.photo');if(v){v.muted=true;v.play().catch(()=>{});}
   }catch(e){document.getElementById('card').innerHTML=`<div class="err">content unavailable — retrying…</div>`;}
 }
 let lastHash='';
