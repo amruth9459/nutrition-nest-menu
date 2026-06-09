@@ -82,5 +82,5 @@ async function poll(){try{const _d=await L('aisles');const h=JSON.stringify(_d);
 addEventListener('resize',fit);
 (async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await poll(); })();
 setInterval(poll,5000);                     // pick up admin edits within ~5s, re-render only when content changed (no flicker)
-setInterval(()=>location.reload(),300000);  // safety: full reload every 5 min in case the player suspends timers
+setInterval(async()=>{try{const r=await fetch(location.pathname+'?p='+Date.now(),{method:'HEAD',cache:'no-store'});if(r&&r.ok)location.reload();}catch(e){/* site unreachable — DON'T reload, keep showing last content so an outage never blanks the panel */}},300000);
 </script></body></html>
