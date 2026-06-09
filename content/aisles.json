@@ -1,0 +1,242 @@
+[
+ {
+  "number": "1",
+  "title": "SKIN, HAIR, NAILS",
+  "subtitle": "GLOW FROM WITHIN",
+  "items": [
+   "COLLAGEN",
+   "BIOTIN",
+   "KERATIN",
+   "HAIR MASKS",
+   "FACE SERUMS",
+   "NAIL OILS",
+   "CLAY MASKS",
+   "JADE ROLLERS"
+  ],
+  "promo": {
+   "offer": "Beauty",
+   "title": "Marine Collagen",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/01-marine-collagen.png"
+  }
+ },
+ {
+  "number": "2",
+  "title": "WHOLE BODY WELLNESS",
+  "subtitle": "NOURISH NATURALLY",
+  "items": [
+   "ADAPTOGENS",
+   "MULTIVITAMINS",
+   "IMMUNE BLENDS",
+   "ANTIOXIDANTS",
+   "HERBAL TINCTURES",
+   "MUSHROOM BLENDS",
+   "ELDERBERRY",
+   "TONICS"
+  ],
+  "promo": {
+   "offer": "Adaptogen",
+   "title": "Ashwagandha Root",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/02-ashwagandha.png"
+  }
+ },
+ {
+  "number": "3",
+  "title": "SUPPLEMENTS",
+  "subtitle": "DAILY ESSENTIALS",
+  "items": [
+   "OMEGA-3",
+   "VITAMIN D3",
+   "PROBIOTICS",
+   "MAGNESIUM",
+   "B-COMPLEX",
+   "CoQ10",
+   "IRON",
+   "ZINC"
+  ],
+  "promo": {
+   "offer": "Essential",
+   "title": "Wild Omega-3",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/03-omega3.png"
+  }
+ },
+ {
+  "number": "4",
+  "title": "SUPPLEMENTS",
+  "subtitle": "TARGETED SUPPORT",
+  "items": [
+   "PROTEIN POWDER",
+   "BCAAs",
+   "CREATINE",
+   "GREENS POWDER",
+   "PRE-WORKOUT",
+   "JOINT SUPPORT",
+   "COLLAGEN PEPTIDES",
+   "GLUTAMINE"
+  ],
+  "promo": {
+   "offer": "Plant",
+   "title": "Pea Protein Isolate",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/04-pea-protein.png"
+  }
+ },
+ {
+  "number": "5",
+  "title": "SUPPLEMENTS",
+  "subtitle": "SPECIALTY BLENDS",
+  "items": [
+   "NOOTROPICS",
+   "SLEEP AIDS",
+   "DIGESTIVE ENZYMES",
+   "L-THEANINE",
+   "L-TYROSINE",
+   "ACV",
+   "GINGER ROOT",
+   "MILK THISTLE"
+  ],
+  "promo": {
+   "offer": "Cognitive",
+   "title": "Lion's Mane Extract",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/05-lions-mane.png"
+  }
+ },
+ {
+  "number": "6",
+  "title": "MORNING ESSENTIALS",
+  "subtitle": "START YOUR DAY",
+  "items": [
+   "WHOLE BEAN COFFEE",
+   "MATCHA",
+   "CHAI BLENDS",
+   "GRANOLA",
+   "OATS",
+   "NUT BUTTERS",
+   "HONEY",
+   "MAPLE SYRUP"
+  ],
+  "promo": {
+   "offer": "Single Origin",
+   "title": "Ethiopian Yirgacheffe",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/06-ethiopian-coffee.png"
+  }
+ },
+ {
+  "number": "7",
+  "title": "MORNING ESSENTIALS",
+  "subtitle": "BREAKFAST RITUALS",
+  "items": [
+   "ARTISAN BREAD",
+   "PRESERVES",
+   "PANCAKE MIX",
+   "CEREAL",
+   "CHIA SEEDS",
+   "FLAX MEAL",
+   "YOGURT TOPPERS",
+   "NUT GRANOLAS"
+  ],
+  "promo": {
+   "offer": "Baked Daily",
+   "title": "Country Sourdough",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/07-sourdough.png"
+  }
+ },
+ {
+  "number": "8",
+  "title": "NATURAL SNACKS",
+  "subtitle": "MINDFUL BITES",
+  "items": [
+   "DARK CHOCOLATE",
+   "NUT MIXES",
+   "DRIED FRUIT",
+   "JERKY",
+   "PROTEIN BARS",
+   "SEED CRACKERS",
+   "POPCORN",
+   "KALE CHIPS"
+  ],
+  "promo": {
+   "offer": "85% Cacao",
+   "title": "Single Origin Dark Chocolate",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/08-dark-chocolate.png"
+  }
+ },
+ {
+  "number": "9",
+  "title": "INTERNATIONAL",
+  "subtitle": "FLAVORS OF THE WORLD",
+  "items": [
+   "JAPANESE",
+   "KOREAN",
+   "MEXICAN",
+   "INDIAN",
+   "MIDDLE EASTERN",
+   "MEDITERRANEAN",
+   "THAI",
+   "VIETNAMESE"
+  ],
+  "promo": {
+   "offer": "Aged",
+   "title": "White Miso Paste",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/09-miso.png"
+  }
+ },
+ {
+  "number": "10",
+  "title": "PASTA",
+  "subtitle": "ARTISAN ITALIAN",
+  "items": [
+   "BUCATINI",
+   "ORECCHIETTE",
+   "TAGLIATELLE",
+   "PAPPARDELLE",
+   "RIGATONI",
+   "FUSILLI",
+   "GLUTEN-FREE",
+   "PASTA SAUCES"
+  ],
+  "promo": {
+   "offer": "Bronze Die",
+   "title": "Bucatini di Gragnano",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/10-bucatini.png"
+  }
+ },
+ {
+  "number": "11",
+  "title": "SPICES & SPREADS",
+  "subtitle": "EVERYDAY FLAVOR",
+  "items": [
+   "SINGLE-ORIGIN SPICES",
+   "SEA SALTS",
+   "OLIVE OILS",
+   "VINEGARS",
+   "NUT BUTTERS",
+   "TAHINI",
+   "HOT SAUCES",
+   "JAMS"
+  ],
+  "promo": {
+   "offer": "Single Origin",
+   "title": "Persian Saffron",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/11-saffron.png"
+  }
+ },
+ {
+  "number": "12",
+  "title": "HOUSEHOLD & DRINKS",
+  "subtitle": "DAILY STAPLES",
+  "items": [
+   "SPARKLING WATER",
+   "KOMBUCHA",
+   "COCONUT WATER",
+   "PLANT MILKS",
+   "CASTILE SOAP",
+   "PAPER GOODS",
+   "COMPOSTABLE BAGS",
+   "CLEANING ESSENTIALS"
+  ],
+  "promo": {
+   "offer": "Sparkling",
+   "title": "Mineral Water",
+   "image": "file:///Users/amrut/Downloads/NN/aisle-photos/12-mineral-water.png"
+  }
+ }
+]

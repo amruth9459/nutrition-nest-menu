@@ -1,0 +1,239 @@
+{
+ "brand": "NUTRITION NEST",
+ "title": "THE ELIXIR MENU",
+ "sub": "Choose by how you want to feel — every elixir is tuned to a wellness pathway",
+ "pathways": [
+  {
+   "pathway": "ALIVE",
+   "for": "gut, sleep & stress",
+   "drinks": [
+    {
+     "name": "Cacao Reishi Moon Milk",
+     "price": "$12"
+    },
+    {
+     "name": "Moringa Mint Tonic",
+     "price": "$10"
+    }
+   ]
+  },
+  {
+   "pathway": "PURIFY",
+   "for": "detox & cleanse",
+   "drinks": [
+    {
+     "name": "Tamarind Ginger Detox Agua",
+     "price": "$9.50"
+    },
+    {
+     "name": "Maqui Berry Purify Lemonade",
+     "price": "$10"
+    }
+   ]
+  },
+  {
+   "pathway": "DEFENSE",
+   "for": "immunity & skin",
+   "drinks": [
+    {
+     "name": "Black Seed Immunity Latte",
+     "price": "$11"
+    },
+    {
+     "name": "Golden Turmeric Tamarind Cooler",
+     "price": "$9.50"
+    }
+   ]
+  },
+  {
+   "pathway": "RESTORE",
+   "for": "hormones & metabolism",
+   "drinks": [
+    {
+     "name": "Cardamom Date Restore Espresso",
+     "price": "$11"
+    },
+    {
+     "name": "Ashwagandha Horchata",
+     "price": "$11.50"
+    }
+   ]
+  },
+  {
+   "pathway": "HARMONY",
+   "for": "heart & circulation",
+   "drinks": [
+    {
+     "name": "Iced Pomegranate Bissap Tea",
+     "price": "$9"
+    },
+    {
+     "name": "Ruby Heart Latte",
+     "price": "$10.50"
+    }
+   ]
+  },
+  {
+   "pathway": "CLARITY",
+   "for": "brain & mood",
+   "drinks": [
+    {
+     "name": "Korean Ssanghwa-cha (쌍화차)",
+     "price": "$8.50"
+    },
+    {
+     "name": "Butterfly Pea Flower Clarity Fizz",
+     "price": "$10"
+    }
+   ]
+  },
+  {
+   "pathway": "FORCE",
+   "for": "energy & strength",
+   "drinks": [
+    {
+     "name": "Yerba Mate Endurance Brew",
+     "price": "$8.50"
+    },
+    {
+     "name": "Banana Walnut Cream Protein Shake",
+     "price": "$13"
+    }
+   ]
+  },
+  {
+   "pathway": "LONGEVITY",
+   "for": "aging & aesthetics",
+   "drinks": [
+    {
+     "name": "Chaga Maple Bark Brew",
+     "price": "$11"
+    },
+    {
+     "name": "Saffron Rose Collagen Latte",
+     "price": "$14"
+    }
+   ]
+  }
+ ],
+ "foundation": [
+  {
+   "name": "Coffee & Espresso",
+   "items": [
+    {
+     "name": "Seasonal Coffee Blend",
+     "price": "$7"
+    },
+    {
+     "name": "Hot or Iced Latte",
+     "price": "$8.50"
+    },
+    {
+     "name": "Cappuccino",
+     "price": "$8"
+    },
+    {
+     "name": "Cold Brew",
+     "price": "$8.50"
+    },
+    {
+     "name": "Functional Espresso Shot",
+     "price": "+$4.50"
+    }
+   ]
+  },
+  {
+   "name": "Teas & Kombucha",
+   "items": [
+    {
+     "name": "Green Tea Blend",
+     "price": "$7"
+    },
+    {
+     "name": "Black Tea Blend",
+     "price": "$7"
+    },
+    {
+     "name": "Herbal Botanical Blend",
+     "price": "$7.50"
+    },
+    {
+     "name": "House Kombucha On Tap",
+     "price": "$8.50"
+    }
+   ]
+  }
+ ],
+ "juices": {
+  "name": "Cold-Pressed House Juices",
+  "items": [
+   {
+    "name": "Green Vitality Press",
+    "price": "$11"
+   },
+   {
+    "name": "Golden Radiance Blend",
+    "price": "$11"
+   },
+   {
+    "name": "Deep Root Revival",
+    "price": "$11"
+   }
+  ]
+ },
+ "addons": {
+  "title": "Functional Add-Ons",
+  "subtitle": "Customize any drink to your pathway",
+  "items": [
+   {
+    "name": "Ashwagandha KSM-66",
+    "price": "+$4.50"
+   },
+   {
+    "name": "Pea Protein",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Lion's Mane Extract",
+    "price": "+$4.50"
+   },
+   {
+    "name": "Vitamin D3 + K2",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Reishi Mushroom Powder",
+    "price": "+$4.50"
+   },
+   {
+    "name": "Marine Collagen Peptides",
+    "price": "+$4.50"
+   },
+   {
+    "name": "Activated Charcoal",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Maca Root Powder",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Moringa Leaf Powder",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Chlorophyll Drops",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Turmeric + Black Pepper",
+    "price": "+$3.50"
+   },
+   {
+    "name": "Espresso Shot",
+    "price": "+$4.50"
+   }
+  ]
+ },
+ "footer": "Nutrition Nest · Preserve Life Corp · Ask your wellness guide to tune any drink"
+}
