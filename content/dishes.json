@@ -49,17 +49,17 @@
    "station": "SOUP",
    "pathway": "DEFENSE · LONGEVITY",
    "kcal": "50",
-   "benefit": "Beta-glucans for immune resilience",
+   "benefit": "Beta-glucans for immune resilience & cellular health",
    "img": "/media/dishes/mushroom-broth.jpg"
   },
   {
-   "file": "butternut-squash.jpg",
+   "file": "butternut-squash-soup.jpg",
    "name": "Butternut Squash Soup",
    "station": "SOUP",
    "pathway": "FORCE · DEFENSE",
    "kcal": "250",
-   "benefit": "Beta-carotene for immunity & steady energy",
-   "img": "/media/dishes/butternut-squash.jpg"
+   "benefit": "Energy-supporting complex carbs & beta-carotene",
+   "img": "/media/dishes/butternut-squash-soup.jpg"
   },
   {
    "file": "greek-salad.jpg",
@@ -67,17 +67,17 @@
    "station": "SALAD",
    "pathway": "HARMONY",
    "kcal": "60",
-   "benefit": "Lycopene & olive oil for heart health",
+   "benefit": "Heart-healthy fats, potassium & lycopene",
    "img": "/media/dishes/greek-salad.jpg"
   },
   {
-   "file": "cauliflower-salad.jpg",
-   "name": "Roasted Cauliflower & Pomegranate",
+   "file": "cauliflower-pomegranate-salad.jpg",
+   "name": "Roasted Cauliflower & Pomegranate Salad",
    "station": "SALAD",
    "pathway": "PURIFY",
    "kcal": "220",
-   "benefit": "Sulforaphane & antioxidants for detox",
-   "img": "/media/dishes/cauliflower-salad.jpg"
+   "benefit": "Sulforaphane for liver support & antioxidants",
+   "img": "/media/dishes/cauliflower-pomegranate-salad.jpg"
   },
   {
    "file": "miso-black-cod.jpg",
@@ -85,26 +85,26 @@
    "station": "MAIN",
    "pathway": "CLARITY",
    "kcal": "270",
-   "benefit": "Omega-3s for focus & mood",
+   "benefit": "Omega-3s & B-vitamins for brain function",
    "img": "/media/dishes/miso-black-cod.jpg"
   },
   {
-   "file": "sea-bass.jpg",
-   "name": "Honey-Orange Sea Bass",
+   "file": "honey-orange-sea-bass.jpg",
+   "name": "Honey Orange Sea Bass with Lentils",
    "station": "MAIN",
    "pathway": "HARMONY",
    "kcal": "215",
-   "benefit": "Lean protein & fiber for the heart",
-   "img": "/media/dishes/sea-bass.jpg"
+   "benefit": "Heart-healthy omega-3s & fiber over warm lentils",
+   "img": "/media/dishes/honey-orange-sea-bass.jpg"
   },
   {
-   "file": "chicken-thigh.jpg",
-   "name": "Glazed Chicken Thigh",
+   "file": "curried-fish-papillote.jpg",
+   "name": "Curried Fish in Papillote",
    "station": "MAIN",
    "pathway": "FORCE",
-   "kcal": "250",
-   "benefit": "Iron-rich protein for energy & recovery",
-   "img": "/media/dishes/chicken-thigh.jpg"
+   "kcal": "190",
+   "benefit": "Lean protein with turmeric & lemongrass",
+   "img": "/media/dishes/curried-fish-papillote.jpg"
   },
   {
    "file": "haddock-cauliflower.jpg",
@@ -112,44 +112,71 @@
    "station": "MAIN",
    "pathway": "PURIFY",
    "kcal": "280",
-   "benefit": "Cruciferous detox, light & restorative",
+   "benefit": "Light protein with cruciferous cauliflower purée",
    "img": "/media/dishes/haddock-cauliflower.jpg"
   },
   {
-   "file": "shakshouka.jpg",
-   "name": "White Shakshouka",
+   "file": "curried-roasted-cauliflower.jpg",
+   "name": "Curried Roasted Cauliflower",
+   "station": "MAIN",
+   "pathway": "PURIFY",
+   "kcal": "150",
+   "benefit": "Cruciferous sulforaphane for gentle detox",
+   "img": "/media/dishes/curried-roasted-cauliflower.jpg"
+  },
+  {
+   "file": "white-shakshouka.jpg",
+   "name": "White Shakshouka with Poached Eggs",
    "station": "MAIN",
    "pathway": "RESTORE",
    "kcal": "260",
-   "benefit": "Choline-rich eggs for liver support",
-   "img": "/media/dishes/shakshouka.jpg"
+   "benefit": "Choline-rich eggs with leeks & spinach",
+   "img": "/media/dishes/white-shakshouka.jpg"
   },
   {
-   "file": "teriyaki-salmon.jpg",
+   "file": "grilled-teriyaki-salmon.jpg",
    "name": "Grilled Teriyaki Salmon",
    "station": "MAIN",
    "pathway": "DEFENSE",
    "kcal": "300",
-   "benefit": "Vitamin D & omega-3 for immunity",
-   "img": "/media/dishes/teriyaki-salmon.jpg"
+   "benefit": "Vitamin D & omega-3s for immune support",
+   "img": "/media/dishes/grilled-teriyaki-salmon.jpg"
+  },
+  {
+   "file": "kimchi-pancake.jpg",
+   "name": "Kimchi Pancake",
+   "station": "MAIN",
+   "pathway": "ALIVE",
+   "kcal": "250",
+   "benefit": "Fermented kimchi for gut microbiome balance",
+   "img": "/media/dishes/kimchi-pancake.jpg"
+  },
+  {
+   "file": "quinoa-bowl-beets.jpg",
+   "name": "Quinoa Bowl with Beets & Miso",
+   "station": "MAIN",
+   "pathway": "LONGEVITY",
+   "kcal": "300",
+   "benefit": "Polyphenol-rich beets & complete-protein quinoa",
+   "img": "/media/dishes/quinoa-bowl-beets.jpg"
   },
   {
    "file": "acai-bowl.jpg",
-   "name": "Açaí Bowl Base",
+   "name": "Acai Bowl",
    "station": "DESSERT",
    "pathway": "ALL PATHWAYS",
    "kcal": "90",
-   "benefit": "Anthocyanin antioxidants for cellular health",
+   "benefit": "Anthocyanin antioxidants for cellular protection",
    "img": "/media/dishes/acai-bowl.jpg"
   },
   {
-   "file": "almond-cake.jpg",
+   "file": "almond-sponge-cake.jpg",
    "name": "Light Almond Sponge Cake",
    "station": "DESSERT",
    "pathway": "ALL PATHWAYS",
    "kcal": "150",
-   "benefit": "Vitamin E & good fats for the brain",
-   "img": "/media/dishes/almond-cake.jpg"
+   "benefit": "Vitamin E & good fats, gently sweet",
+   "img": "/media/dishes/almond-sponge-cake.jpg"
   }
  ]
 }
