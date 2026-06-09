@@ -4,7 +4,7 @@ export default async (req) => {
   if (req.method !== 'POST') return json({ error: 'POST only' }, 405);
   let body; try { body = await req.json(); } catch { return json({ error: 'bad body' }, 400); }
   const cfg = getStore('config');
-  const existing = await cfg.get('password');
+  const existing = await cfg.get('password', { consistency: 'strong' });
   if (existing) {
     if (body.current !== existing) return json({ error: 'wrong current password' }, 401);
     if (body.reset) { await cfg.delete('password'); return json({ ok: true, reset: true }); }

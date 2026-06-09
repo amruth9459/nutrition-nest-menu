@@ -4,7 +4,7 @@ import { getStore } from '@netlify/blobs';
 export default async (req) => {
   const file = new URL(req.url).pathname.split('/').pop().replace(/\.json$/, '');
   let data = null;
-  try { data = await getStore('content').get(file, { type: 'json' }); } catch { /* blob store may be empty */ }
+  try { data = await getStore('content').get(file, { type: 'json', consistency: 'strong' }); } catch { /* blob store may be empty */ }
   if (data == null) {
     try { const r = await fetch(new URL('/content/' + file + '.json', req.url)); if (r.ok) data = await r.json(); } catch { /* no seed */ }
   }

@@ -3,7 +3,7 @@ import { getStore } from '@netlify/blobs';
 export default async (req) => {
   if (req.method !== 'POST') return json({ error: 'POST only' }, 405);
   let body; try { body = await req.json(); } catch { return json({ error: 'bad body' }, 400); }
-  const pw = await getStore('config').get('password');
+  const pw = await getStore('config').get('password', { consistency: 'strong' });
   if (!pw) return json({ error: 'admin not set up yet' }, 503);
   if (!body.password || body.password !== pw) return json({ error: 'wrong password' }, 401);
   try {
