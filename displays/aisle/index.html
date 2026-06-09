@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nutrition Nest — Aisle</title>
+<style>
+@font-face{font-family:'GillLight';src:url('/assets/fonts/gill-light.ttf')}
+@font-face{font-family:'GillBook';src:url('/assets/fonts/gill-book.ttf')}
+@font-face{font-family:'GillSemi';src:url('/assets/fonts/gill-semibold.ttf')}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0c0c0c;--text:#f1ede4;--muted:#8a8473;--bronze:#a8986a;--divider:#8b7b53;--line:rgba(168,152,106,.26)}
+html,body{width:100vw;height:100vh;background:#000;overflow:hidden}
+#scaler{position:absolute;top:0;left:0;transform-origin:top left}
+.card{width:540px;height:1920px;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column;color:var(--text)}
+.wmbar{display:flex;justify-content:center;padding:50px 0 0;flex-shrink:0}
+.wm{width:300px;height:auto;display:block}
+.content{padding:32px 40px 0 40px;flex:1;display:flex;flex-direction:column;overflow:hidden}
+.num span{font-family:'GillLight';font-size:142px;line-height:.92;color:var(--bronze);display:inline-block}
+.num{margin-bottom:2px;flex-shrink:0}
+.title{margin-bottom:12px;flex-shrink:0}
+.title span{font-family:'GillLight';font-size:68px;text-transform:uppercase;color:var(--text);line-height:1.06;display:block;letter-spacing:.03em}
+.sub{margin-bottom:32px;flex-shrink:0}
+.sub span{font-family:'GillSemi';font-size:30px;text-transform:uppercase;color:var(--bronze);line-height:1.1;display:block;letter-spacing:.18em}
+.list{flex:1;overflow:hidden}
+.list-inner{display:flex;flex-direction:column;position:relative;padding-left:24px}
+.hairline{position:absolute;left:0;top:6px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--divider) 0%,rgba(255,255,255,0) 100%)}
+.li{font-family:'GillBook';font-size:31px;text-transform:uppercase;letter-spacing:3px;margin-bottom:.6em;line-height:1.2;color:#d2cec6}
+.featured{flex-shrink:0;padding:22px 40px 20px;border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start}
+.eyebrow{font-family:'GillSemi';font-size:21px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;margin-bottom:15px}
+.badge{font-family:'GillSemi';font-size:21px;letter-spacing:2px;color:#e8dcc0;text-transform:uppercase;background:rgba(168,152,106,.12);padding:6px 15px;border-radius:3px;border:1px solid var(--divider);margin-bottom:15px}
+.ptitle{font-family:'GillLight';font-size:50px;color:#fff;line-height:1.05;letter-spacing:.01em}
+.bottom{height:32%;position:relative;width:100%;margin-top:auto;flex-shrink:0;overflow:hidden}
+.photo{position:absolute;inset:0;background-size:cover;background-position:center center}
+.photo-fade{position:absolute;left:0;right:0;top:0;height:130px;background:linear-gradient(to bottom,var(--bg) 0%,rgba(12,12,12,0) 100%);z-index:1;pointer-events:none}
+.corner{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(480px 480px at 100% 100%,var(--bg) 0%,var(--bg) 31%,rgba(12,12,12,.55) 46%,rgba(12,12,12,0) 64%)}
+.logo{position:absolute;bottom:30px;right:34px;z-index:10;width:104px;height:104px;display:flex;align-items:center;justify-content:center}
+.logo img{width:100%;height:100%;object-fit:contain;display:block;opacity:.96;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.err{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'GillBook';font-size:30px;text-align:center;padding:40px}
+</style></head>
+<body>
+<div id="scaler"><div class="card" id="card"></div></div>
+<script>
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const N=new URLSearchParams(location.search).get('n')||'1';
+function fit(){const k=Math.min(innerWidth/540,innerHeight/1920);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-540*k)/2}px,${(innerHeight-1920*k)/2}px) scale(${k})`;}
+function doFit(){const t=document.getElementById('t');if(!t)return;const W=t.clientWidth;let lsp=3;while(t.scrollWidth>W&&lsp>-7){lsp-=1;t.style.letterSpacing=lsp+'px';}const sub=document.getElementById('s');let sls=Math.round(0.18*30);while(sub&&sub.scrollWidth>sub.clientWidth&&sls>-4){sls-=1;sub.style.letterSpacing=sls+'px';}}
+async function render(){
+  try{
+    const _d=await(await fetch('/content/aisles.json?t='+Date.now(),{cache:'no-store'})).json();
+    const all=Array.isArray(_d)?_d:(_d.aisles||[]);
+    const a=all.find(x=>String(x.number)===String(N))||all[0];
+    const p=a.promo||{};
+    document.getElementById('card').innerHTML=`
+      <div class="wmbar"><img class="wm" src="/assets/logo/wordmark-white.png" alt="Nutrition Nest"></div>
+      <div class="content">
+        <div class="num"><span>${esc(a.number)}</span></div>
+        <div class="title"><span id="t">${esc(a.title)}</span></div>
+        <div class="sub"><span id="s">${esc(a.subtitle)}</span></div>
+        <div class="list"><div class="list-inner"><div class="hairline"></div>${(a.items||[]).map(t=>`<div class="li">${esc(t)}</div>`).join('')}</div></div>
+      </div>
+      <div class="featured">
+        <span class="eyebrow">Featured</span>
+        <span class="badge">${esc(p.offer)}</span>
+        <span class="ptitle">${esc(p.title)}</span>
+      </div>
+      <div class="bottom">
+        <div class="photo" style="${p.image?`background-image:url('${esc(p.image)}')`:''}"></div>
+        <div class="photo-fade"></div><div class="corner"></div>
+        <div class="logo"><img src="/assets/logo/brandmark-white.png" alt="n"></div>
+      </div>`;
+    doFit();fit();
+  }catch(e){document.getElementById('card').innerHTML=`<div class="err">content unavailable — retrying…</div>`;}
+}
+addEventListener('resize',fit);
+(async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await render(); })();
+setInterval(render,45000);
+</script></body></html>

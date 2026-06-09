@@ -1,0 +1,155 @@
+{
+ "brand": "THE FUNCTIONAL PLATE",
+ "tagline": "EVERY DISH DESIGNED WITH PURPOSE",
+ "concept": "Choose how you want to feel — and your whole meal aligns to it.",
+ "howItWorks": [
+  "Choose your wellness pathway",
+  "We build it — soup, main & dessert — around that goal",
+  "Portion-perfect: mains 150–300 kcal, condiments under 60"
+ ],
+ "cta": "Tell your server how you want to feel — we’ll guide your plate.",
+ "pathways": [
+  {
+   "name": "ALIVE",
+   "for": "gut, sleep & stress"
+  },
+  {
+   "name": "PURIFY",
+   "for": "detox & cleanse"
+  },
+  {
+   "name": "DEFENSE",
+   "for": "immunity & skin"
+  },
+  {
+   "name": "RESTORE",
+   "for": "hormones & metabolism"
+  },
+  {
+   "name": "HARMONY",
+   "for": "heart & circulation"
+  },
+  {
+   "name": "CLARITY",
+   "for": "brain & mood"
+  },
+  {
+   "name": "FORCE",
+   "for": "energy & strength"
+  },
+  {
+   "name": "LONGEVITY",
+   "for": "aging & aesthetics"
+  }
+ ],
+ "dishes": [
+  {
+   "file": "mushroom-broth.jpg",
+   "name": "Healing Mushroom Broth",
+   "station": "SOUP",
+   "pathway": "DEFENSE · LONGEVITY",
+   "kcal": "50",
+   "benefit": "Beta-glucans for immune resilience",
+   "img": "/media/dishes/mushroom-broth.jpg"
+  },
+  {
+   "file": "butternut-squash.jpg",
+   "name": "Butternut Squash Soup",
+   "station": "SOUP",
+   "pathway": "FORCE · DEFENSE",
+   "kcal": "250",
+   "benefit": "Beta-carotene for immunity & steady energy",
+   "img": "/media/dishes/butternut-squash.jpg"
+  },
+  {
+   "file": "greek-salad.jpg",
+   "name": "Authentic Greek Salad",
+   "station": "SALAD",
+   "pathway": "HARMONY",
+   "kcal": "60",
+   "benefit": "Lycopene & olive oil for heart health",
+   "img": "/media/dishes/greek-salad.jpg"
+  },
+  {
+   "file": "cauliflower-salad.jpg",
+   "name": "Roasted Cauliflower & Pomegranate",
+   "station": "SALAD",
+   "pathway": "PURIFY",
+   "kcal": "220",
+   "benefit": "Sulforaphane & antioxidants for detox",
+   "img": "/media/dishes/cauliflower-salad.jpg"
+  },
+  {
+   "file": "miso-black-cod.jpg",
+   "name": "Miso Black Cod",
+   "station": "MAIN",
+   "pathway": "CLARITY",
+   "kcal": "270",
+   "benefit": "Omega-3s for focus & mood",
+   "img": "/media/dishes/miso-black-cod.jpg"
+  },
+  {
+   "file": "sea-bass.jpg",
+   "name": "Honey-Orange Sea Bass",
+   "station": "MAIN",
+   "pathway": "HARMONY",
+   "kcal": "215",
+   "benefit": "Lean protein & fiber for the heart",
+   "img": "/media/dishes/sea-bass.jpg"
+  },
+  {
+   "file": "chicken-thigh.jpg",
+   "name": "Glazed Chicken Thigh",
+   "station": "MAIN",
+   "pathway": "FORCE",
+   "kcal": "250",
+   "benefit": "Iron-rich protein for energy & recovery",
+   "img": "/media/dishes/chicken-thigh.jpg"
+  },
+  {
+   "file": "haddock-cauliflower.jpg",
+   "name": "Haddock & Cauliflower",
+   "station": "MAIN",
+   "pathway": "PURIFY",
+   "kcal": "280",
+   "benefit": "Cruciferous detox, light & restorative",
+   "img": "/media/dishes/haddock-cauliflower.jpg"
+  },
+  {
+   "file": "shakshouka.jpg",
+   "name": "White Shakshouka",
+   "station": "MAIN",
+   "pathway": "RESTORE",
+   "kcal": "260",
+   "benefit": "Choline-rich eggs for liver support",
+   "img": "/media/dishes/shakshouka.jpg"
+  },
+  {
+   "file": "teriyaki-salmon.jpg",
+   "name": "Grilled Teriyaki Salmon",
+   "station": "MAIN",
+   "pathway": "DEFENSE",
+   "kcal": "300",
+   "benefit": "Vitamin D & omega-3 for immunity",
+   "img": "/media/dishes/teriyaki-salmon.jpg"
+  },
+  {
+   "file": "acai-bowl.jpg",
+   "name": "Açaí Bowl Base",
+   "station": "DESSERT",
+   "pathway": "ALL PATHWAYS",
+   "kcal": "90",
+   "benefit": "Anthocyanin antioxidants for cellular health",
+   "img": "/media/dishes/acai-bowl.jpg"
+  },
+  {
+   "file": "almond-cake.jpg",
+   "name": "Light Almond Sponge Cake",
+   "station": "DESSERT",
+   "pathway": "ALL PATHWAYS",
+   "kcal": "150",
+   "benefit": "Vitamin E & good fats for the brain",
+   "img": "/media/dishes/almond-cake.jpg"
+  }
+ ]
+}

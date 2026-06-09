@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nutrition Nest — Signage Admin</title>
+</head><body>
+<!-- Netlify Identity widget: gives managers email/password login -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Decap CMS: the admin UI, configured by /admin/config.yml -->
+<script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+<script>
+  // after a manager confirms their invite, send them straight into the admin
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (!user) window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+    });
+  }
+</script>
+</body></html>

@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nutrition Nest — Seasonal Elixirs Reel</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600&display=swap');
+@font-face{font-family:'GillLight';src:url('/assets/fonts/gill-light.ttf')}
+@font-face{font-family:'GillBook';src:url('/assets/fonts/gill-book.ttf')}
+@font-face{font-family:'GillSemi';src:url('/assets/fonts/gill-semibold.ttf')}
+:root{--bg:#0c0c0c;--gold:#a8986a;--gold-dk:#8b7b53;--text:#f1ede4;--muted:#9b968b;--line:rgba(168,152,106,.26);font-variant-numeric:lining-nums tabular-nums}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100vw;height:100vh;background:#000;overflow:hidden}
+#scaler{position:absolute;top:0;left:0;transform-origin:top left}
+.reel{position:relative;width:3840px;height:2160px;background:var(--bg);overflow:hidden}
+.frame-border{position:absolute;left:40px;top:40px;right:40px;bottom:40px;border:2px solid var(--gold-dk);pointer-events:none;z-index:40}
+.frame-border::after{content:"";position:absolute;left:14px;top:14px;right:14px;bottom:14px;border:1px solid rgba(168,152,106,0.28)}
+.vignette{position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(130% 100% at 50% 48%,rgba(0,0,0,0) 54%,rgba(0,0,0,0.5) 100%)}
+.band{position:absolute;left:40px;top:40px;right:40px;height:210px;z-index:35;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:0 130px;border-bottom:1px solid rgba(168,152,106,0.5)}
+.band-wordmark{height:150px;width:auto;display:block}
+.band-title{font-family:'GillLight';font-size:50px;line-height:1;letter-spacing:0.12em;color:#f3efe6;text-transform:uppercase;white-space:nowrap}
+.layer{position:absolute;left:0;right:0;top:300px;bottom:0;z-index:10;opacity:0;transition:opacity .7s ease}
+.layer.on{opacity:1}
+.drink-wrap{position:absolute;inset:0;display:flex;align-items:stretch}
+.left{width:55%;height:100%;padding:120px 130px 130px 200px;display:flex;flex-direction:column}
+.tags{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin-bottom:58px}
+.tag{font-family:'GillSemi';text-transform:uppercase;letter-spacing:0.2em;font-size:34px;color:var(--muted);white-space:nowrap}
+.tag.origin{color:#e7e2d8}
+.pill{font-family:'GillSemi';text-transform:uppercase;letter-spacing:0.22em;font-size:34px;color:#15120a;background:var(--gold);padding:18px 34px 15px;white-space:nowrap}
+.tag-sep{width:12px;height:12px;background:var(--gold);transform:rotate(45deg)}
+.name-block{margin-bottom:52px}
+.dish-name{font-family:'GillLight','Noto Sans KR',sans-serif;font-size:140px;line-height:1.0;color:var(--text);max-width:1720px}
+.name-rule{width:220px;height:3px;background:var(--gold);margin-top:48px}
+.mid{margin-top:8px;flex:1}
+.benefit{font-family:'GillBook';font-size:60px;line-height:1.2;color:#efe9dc;max-width:1640px;margin-bottom:50px}
+.ing-label{font-family:'GillSemi';text-transform:uppercase;letter-spacing:0.3em;font-size:36px;color:var(--gold);margin-bottom:24px}
+.ingredients{font-family:'GillBook';font-size:46px;line-height:1.34;color:var(--muted);max-width:1560px}
+.right{width:45%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+.glow{position:absolute;inset:0;background:radial-gradient(58% 52% at 50% 50%,var(--accent,#a8986a) 0%,rgba(0,0,0,0) 72%);opacity:0.38}
+.photo-frame{position:relative;width:935px;height:1676px;box-shadow:0 50px 120px rgba(0,0,0,0.6)}
+.dish-photo{position:absolute;inset:0;background-size:cover;background-position:center}
+.photo-frame::before{content:"";position:absolute;left:-20px;top:-20px;right:-20px;bottom:-20px;border:1px solid rgba(168,152,106,0.55);pointer-events:none}
+.intro,.cta{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 200px}
+.intro-wordmark{height:230px;width:auto;display:block;margin-bottom:66px}
+.brand-title{font-family:'GillLight';font-size:230px;line-height:0.98;letter-spacing:0.04em;color:var(--text);text-transform:uppercase}
+.intro-rule{display:flex;align-items:center;gap:38px;margin:64px 0 58px}
+.intro-rule .ln{width:300px;height:2px;background:var(--gold)}
+.intro-rule .dot{width:14px;height:14px;background:var(--gold);transform:rotate(45deg)}
+.sub{font-family:'GillBook';font-size:70px;line-height:1.28;color:var(--muted);max-width:2600px}
+.paths{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 220px 140px}
+.paths-kicker{font-family:'GillSemi';text-transform:uppercase;letter-spacing:0.5em;font-size:42px;color:var(--gold);margin-bottom:34px;padding-left:0.5em}
+.paths-title{font-family:'GillLight';font-size:120px;line-height:1;letter-spacing:0.03em;color:var(--text);text-transform:uppercase;margin-bottom:84px}
+.paths-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:64px 90px;width:100%}
+.path-cell{display:flex;flex-direction:column;border-top:1px solid var(--gold-dk);padding-top:32px}
+.path-name{font-family:'GillSemi';text-transform:uppercase;letter-spacing:0.16em;font-size:54px;color:var(--gold);margin-bottom:24px}
+.path-desc{font-family:'GillBook';font-size:46px;line-height:1.24;color:var(--muted)}
+.cta-wordmark{height:248px;width:auto;display:block;margin-bottom:62px}
+.cta-line{font-family:'GillLight';font-size:130px;line-height:1.12;letter-spacing:0.02em;color:var(--text);max-width:3000px;margin-bottom:74px}
+.cta-flourish{font-family:'GillSemi';text-transform:uppercase;letter-spacing:0.5em;font-size:48px;color:var(--gold);padding-left:0.5em}
+</style></head>
+<body>
+<div id="scaler"><div class="reel">
+  <div class="vignette"></div><div class="frame-border"></div>
+  <div class="band"><img class="band-wordmark" src="/assets/logo/wordmark-white.png" alt="Nutrition Nest"><div class="band-title" id="bt"></div></div>
+  <div class="layer" id="A"></div><div class="layer" id="B"></div>
+</div></div>
+<script>
+const WM='/assets/logo/wordmark-white.png';
+const ACCENT=['#C0354E','#9A5B3A','#3F7A4B','#3B53B0','#7A4A2A','#B23A6E','#C77A2E','#6B5B2E','#5E3B2A','#8A5A2B','#8A6A2E','#3E8A5C','#C58A1E','#7A2E8A','#B98A52','#A9803F'];
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function fit(){const k=Math.min(innerWidth/3840,innerHeight/2160);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-3840*k)/2}px,${(innerHeight-2160*k)/2}px) scale(${k})`;}
+function intro(D){return `<div class="intro"><img class="intro-wordmark" src="${WM}" alt="Nutrition Nest"><h1 class="brand-title">${esc(D.brand)}</h1><div class="intro-rule"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div><div class="sub">${esc(D.sub)}</div></div>`;}
+function paths(D){return `<div class="paths"><div class="paths-kicker">Eight Wellness Pathways</div><h1 class="paths-title">Find Your Pathway</h1><div class="paths-grid">${(D.pathways||[]).map(p=>`<div class="path-cell"><div class="path-name">${esc(p.name)}</div><div class="path-desc">${esc(p.desc)}</div></div>`).join('')}</div></div>`;}
+function drink(D,i){const dr=D.drinks[i];const a=ACCENT[i]||'#a8986a';return `<div class="drink-wrap"><div class="left"><div class="tags"><span class="tag origin">${esc(dr.origin)}</span><span class="tag-sep"></span><span class="tag">${esc(dr.section)}</span><span class="pill">${esc(dr.pathway)}</span></div><div class="name-block"><h1 class="dish-name">${esc(dr.name)}</h1><div class="name-rule"></div></div><div class="mid"><div class="benefit">${esc(dr.benefit)}</div><div class="ing-label">Ingredients</div><div class="ingredients">${esc(dr.ingredients)}</div></div></div><div class="right" style="--accent:${a}"><div class="glow" style="--accent:${a}"></div><div class="photo-frame"><div class="dish-photo" style="background-image:url('${esc(dr.img)}')"></div></div></div></div>`;}
+function cta(D){return `<div class="cta"><img class="cta-wordmark" src="${WM}" alt="Nutrition Nest"><div class="cta-line">${esc(D.cta)}</div><div class="cta-flourish">${esc(D.brand)} · Nutrition Nest</div></div>`;}
+let frames=[],idx=0,cur=0,layers;
+async function load(){
+  const D=await(await fetch('/content/drinks.json?t='+Date.now(),{cache:'no-store'})).json();
+  document.getElementById('bt').textContent=D.brand||'';
+  frames=[intro(D),paths(D),...D.drinks.map((_,i)=>drink(D,i)),cta(D)];
+}
+function tick(){const next=layers[1-cur];next.innerHTML=frames[idx%frames.length];next.classList.add('on');layers[cur].classList.remove('on');cur=1-cur;idx++;}
+addEventListener('resize',fit);
+(async()=>{layers=[document.getElementById('A'),document.getElementById('B')];if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}}await load();fit();tick();setInterval(tick,5200);setInterval(load,120000);})();
+</script></body></html>

@@ -1,0 +1,176 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "media/uploads"
+public_folder: "/media/uploads"
+
+site_url: https://nutrition-nest-signage.netlify.app
+display_url: https://nutrition-nest-signage.netlify.app
+logo_url: https://nutrition-nest-signage.netlify.app/assets/logo/wordmark-white.png
+
+collections:
+  # ---------------- JUICE BOARD ----------------
+  - name: board
+    label: "Juice Board"
+    description: "The left juice-bar screen — pathways, foundation, juices, add-ons."
+    files:
+      - label: "Juice Board"
+        name: board
+        file: "content/board.json"
+        format: json
+        fields:
+          - { label: "Collection name", name: brand, widget: string, required: false }
+          - { label: "Menu title", name: title, widget: string, required: false }
+          - { label: "Tagline", name: sub, widget: string, required: false }
+          - label: "Pathways"
+            name: pathways
+            widget: list
+            summary: "{{fields.pathway}}"
+            fields:
+              - { label: "Pathway", name: pathway, widget: string }
+              - { label: "For (descriptor)", name: for, widget: string }
+              - label: "Drinks"
+                name: drinks
+                widget: list
+                summary: "{{fields.name}} — {{fields.price}}"
+                fields:
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Price", name: price, widget: string }
+          - label: "Foundation columns"
+            name: foundation
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Column title", name: name, widget: string }
+              - label: "Items"
+                name: items
+                widget: list
+                summary: "{{fields.name}} — {{fields.price}}"
+                fields:
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Price", name: price, widget: string }
+          - label: "Cold-pressed juices"
+            name: juices
+            widget: object
+            fields:
+              - { label: "Title", name: name, widget: string }
+              - label: "Items"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Price", name: price, widget: string }
+          - label: "Functional add-ons"
+            name: addons
+            widget: object
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - label: "Items"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Price", name: price, widget: string }
+          - { label: "Footer line", name: footer, widget: string, required: false }
+
+  # ---------------- REEL (JUICE DRINKS) ----------------
+  - name: reel
+    label: "Reel (Juice Drinks)"
+    description: "The right juice-bar screen — cycling drink showcase."
+    files:
+      - label: "Reel Drinks"
+        name: drinks
+        file: "content/drinks.json"
+        format: json
+        fields:
+          - { label: "Collection name", name: brand, widget: string }
+          - { label: "Subtitle", name: sub, widget: string, required: false }
+          - { label: "Closing line (CTA)", name: cta, widget: string, required: false }
+          - label: "Pathways"
+            name: pathways
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Description", name: desc, widget: string }
+          - label: "Drinks"
+            name: drinks
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Price", name: price, widget: string, required: false }
+              - { label: "Pathway", name: pathway, widget: string }
+              - { label: "Origin", name: origin, widget: string, required: false }
+              - { label: "Section", name: section, widget: string, required: false }
+              - { label: "Ingredients", name: ingredients, widget: text }
+              - { label: "Benefit", name: benefit, widget: string }
+              - { label: "Photo", name: img, widget: image, required: false }
+
+  # ---------------- RESTAURANT + PHONE MENU (DISHES) ----------------
+  - name: restaurant
+    label: "Restaurant + Menu (Dishes)"
+    description: "Drives both the restaurant screen and the phone menu."
+    files:
+      - label: "Dishes"
+        name: dishes
+        file: "content/dishes.json"
+        format: json
+        fields:
+          - { label: "Concept name", name: brand, widget: string }
+          - { label: "Tagline", name: tagline, widget: string }
+          - { label: "Concept line", name: concept, widget: text }
+          - label: "How it works (3 steps)"
+            name: howItWorks
+            widget: list
+            field: { label: "Step", name: step, widget: string }
+          - label: "Pathways"
+            name: pathways
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "For (descriptor)", name: for, widget: string }
+          - { label: "At-your-table line (CTA)", name: cta, widget: text }
+          - label: "Dishes"
+            name: dishes
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "Station", name: station, widget: string }
+              - { label: "Pathway", name: pathway, widget: string }
+              - { label: "Calories", name: kcal, widget: string }
+              - { label: "Benefit", name: benefit, widget: string }
+              - { label: "Photo", name: img, widget: image, required: false }
+
+  # ---------------- AISLES ----------------
+  - name: aisles
+    label: "Aisles (1–12)"
+    description: "The 12 portrait aisle screens."
+    files:
+      - label: "Aisles"
+        name: aisles
+        file: "content/aisles.json"
+        format: json
+        fields:
+          - label: "Aisles"
+            name: aisles
+            widget: list
+            summary: "Aisle {{fields.number}} — {{fields.title}}"
+            fields:
+              - { label: "Number", name: number, widget: string }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Subtitle", name: subtitle, widget: string }
+              - label: "Categories"
+                name: items
+                widget: list
+                field: { label: "Category", name: category, widget: string }
+              - label: "Featured product"
+                name: promo
+                widget: object
+                fields:
+                  - { label: "Badge", name: offer, widget: string }
+                  - { label: "Product name", name: title, widget: string }
+                  - { label: "Photo", name: image, widget: image, required: false }

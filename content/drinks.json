@@ -1,0 +1,209 @@
+{
+ "brand": "SEASONAL ELIXIRS",
+ "kicker": "NUTRITION NEST",
+ "sub": "Organic · Curated by our Mixologist & Dietitian · Rotating with the Seasons",
+ "cta": "Ask your wellness guide to tune any elixir to your pathway",
+ "footer": "All elixirs are certified organic · Sourced from our greenhouse & global partners · Ask your wellness guide about pathway customizations",
+ "pathways": [
+  {
+   "name": "ALIVE",
+   "desc": "Gut health, sleep, stress & nervous system"
+  },
+  {
+   "name": "PURIFY",
+   "desc": "Detox, liver, lymphatics & heavy metal clearance"
+  },
+  {
+   "name": "DEFENSE",
+   "desc": "Immune balance, inflammation & skin health"
+  },
+  {
+   "name": "RESTORE",
+   "desc": "Hormones, blood sugar & metabolic regulation"
+  },
+  {
+   "name": "HARMONY",
+   "desc": "Cardiovascular health & circulatory support"
+  },
+  {
+   "name": "CLARITY",
+   "desc": "Brain function, cognition & mood optimization"
+  },
+  {
+   "name": "FORCE",
+   "desc": "Energy, muscle, bone, joint & performance"
+  },
+  {
+   "name": "LONGEVITY",
+   "desc": "Anti-aging, cellular health & aesthetic vitality"
+  }
+ ],
+ "sections": [
+  "Teas & Botanicals",
+  "Lattes & Espresso",
+  "Tonics & Detox Waters",
+  "Shakes & Adaptogen Drinks"
+ ],
+ "drinks": [
+  {
+   "name": "Iced Pomegranate Bissap Tea",
+   "price": "$9",
+   "pathway": "HARMONY",
+   "origin": "West African",
+   "ingredients": "Hibiscus flower & warm-spice tea, fresh pomegranate, monk fruit.",
+   "benefit": "Supports heart health & reduces oxidative stress.",
+   "section": "Teas & Botanicals",
+   "img": "/media/drinks/iced-pomegranate-bissap-tea.jpg"
+  },
+  {
+   "name": "Korean Ssanghwa-cha (쌍화차)",
+   "price": "$8.50",
+   "pathway": "CLARITY",
+   "origin": "Korean Hanbang",
+   "ingredients": "Peony root, rehmannia, cinnamon bark & jujube — slow-simmered.",
+   "benefit": "Deeply nourishes the adrenal system & calms cortisol.",
+   "section": "Teas & Botanicals",
+   "img": "/media/drinks/korean-ssanghwa-cha.jpg"
+  },
+  {
+   "name": "Yerba Mate Endurance Brew",
+   "price": "$8.50",
+   "pathway": "FORCE",
+   "origin": "Argentinean",
+   "ingredients": "Cold-brewed yerba mate, coconut water, raw honey & lime.",
+   "benefit": "Sustains clean energy & heightens stamina.",
+   "section": "Teas & Botanicals",
+   "img": "/media/drinks/yerba-mate-endurance-brew.jpg"
+  },
+  {
+   "name": "Butterfly Pea Flower Clarity Fizz",
+   "price": "$10",
+   "pathway": "CLARITY",
+   "origin": "Thai Inspired",
+   "ingredients": "Color-shifting indigo tea, lion's mane extract, lemon verbena & sparkling water.",
+   "benefit": "Activates neurogenesis & sharpens cognitive clarity.",
+   "section": "Teas & Botanicals",
+   "img": "/media/drinks/butterfly-pea-flower-clarity-fizz.jpg"
+  },
+  {
+   "name": "Chaga Maple Bark Brew",
+   "price": "$11",
+   "pathway": "LONGEVITY",
+   "origin": "Northern Indigenous",
+   "ingredients": "Wild-harvested chaga, birch bark tea, Canadian maple syrup & cinnamon.",
+   "benefit": "Fortifies immune resilience & supports cellular longevity.",
+   "section": "Teas & Botanicals",
+   "img": "/media/drinks/chaga-maple-bark-brew.jpg"
+  },
+  {
+   "name": "Ruby Heart Latte",
+   "price": "$10.50",
+   "pathway": "HARMONY",
+   "origin": "Eastern European",
+   "ingredients": "Oat milk, cacao, beetroot, cardamom & cinnamon.",
+   "benefit": "Supports circulation & gently uplifts the heart.",
+   "section": "Lattes & Espresso",
+   "img": "/media/drinks/ruby-heart-latte.jpg"
+  },
+  {
+   "name": "Saffron Rose Collagen Latte",
+   "price": "$14",
+   "pathway": "LONGEVITY",
+   "origin": "Persian Inspired",
+   "ingredients": "Kashmiri saffron, rose water, marine collagen & pistachio milk.",
+   "benefit": "Restores skin vitality & nourishes tissue repair.",
+   "section": "Lattes & Espresso",
+   "img": "/media/drinks/saffron-rose-collagen-latte.jpg"
+  },
+  {
+   "name": "Black Seed Immunity Latte",
+   "price": "$11",
+   "pathway": "DEFENSE",
+   "origin": "MENA Inspired",
+   "ingredients": "Nigella sativa oil, honey-sweetened almond milk, turmeric & black pepper.",
+   "benefit": "Strengthens immune defenses & eases inflammatory load.",
+   "section": "Lattes & Espresso",
+   "img": "/media/drinks/black-seed-immunity-latte.jpg"
+  },
+  {
+   "name": "Cacao Reishi Moon Milk",
+   "price": "$12",
+   "pathway": "ALIVE",
+   "origin": "Chinese Tonic",
+   "ingredients": "Ceremonial cacao, reishi extract, tart cherry & oat milk with date syrup.",
+   "benefit": "Supports deep rest & restores nervous system balance.",
+   "section": "Lattes & Espresso",
+   "img": "/media/drinks/cacao-reishi-moon-milk.jpg"
+  },
+  {
+   "name": "Cardamom Date Restore Espresso",
+   "price": "$11",
+   "pathway": "RESTORE",
+   "origin": "Levantine & Gulf",
+   "ingredients": "Double espresso, Medjool date & cardamom syrup, maca cashew milk foam.",
+   "benefit": "Replenishes vitality & steadies energy after strain.",
+   "section": "Lattes & Espresso",
+   "img": "/media/drinks/cardamom-date-restore-espresso.jpg"
+  },
+  {
+   "name": "Tamarind Ginger Detox Agua",
+   "price": "$9.50",
+   "pathway": "PURIFY",
+   "origin": "Mexican & South Asian",
+   "ingredients": "Tamarind pulp, fresh ginger, sparkling mineral water & activated charcoal.",
+   "benefit": "Cleanses sluggish digestion & supports gentle detoxification.",
+   "section": "Tonics & Detox Waters",
+   "img": "/media/drinks/tamarind-ginger-detox-agua.jpg"
+  },
+  {
+   "name": "Moringa Mint Tonic",
+   "price": "$10",
+   "pathway": "ALIVE",
+   "origin": "West African & Ayurvedic",
+   "ingredients": "Fresh moringa, spearmint, aloe vera, sparkling water & lime zest.",
+   "benefit": "Replenishes minerals & revitalizes the body with green vitality.",
+   "section": "Tonics & Detox Waters",
+   "img": "/media/drinks/moringa-mint-tonic.jpg"
+  },
+  {
+   "name": "Golden Turmeric Tamarind Cooler",
+   "price": "$9.50",
+   "pathway": "DEFENSE",
+   "origin": "South Indian",
+   "ingredients": "Organic turmeric, tamarind, lime, ginger & sparkling water.",
+   "benefit": "Quiets inflammation & warms the immune system.",
+   "section": "Tonics & Detox Waters",
+   "img": "/media/drinks/golden-turmeric-tamarind-cooler.jpg"
+  },
+  {
+   "name": "Maqui Berry Purify Lemonade",
+   "price": "$10",
+   "pathway": "PURIFY",
+   "origin": "Patagonian Chilean",
+   "ingredients": "Deep purple maqui berry, fresh lemon, chlorophyll drops & mineral water.",
+   "benefit": "Floods the body with antioxidants & brightens cellular defense.",
+   "section": "Tonics & Detox Waters",
+   "img": "/media/drinks/maqui-berry-purify-lemonade.jpg"
+  },
+  {
+   "name": "Banana Walnut Cream Protein Shake",
+   "price": "$13",
+   "pathway": "FORCE",
+   "origin": "House Recipe",
+   "ingredients": "Ripe banana, in-house toasted walnut milk — comforting, creamy, built for recovery.",
+   "benefit": "Rebuilds muscle reserves & steadies post-exertion recovery.",
+   "section": "Shakes & Adaptogen Drinks",
+   "img": "/media/drinks/banana-walnut-cream-protein-shake.jpg"
+  },
+  {
+   "name": "Ashwagandha Horchata",
+   "price": "$11.50",
+   "pathway": "RESTORE",
+   "origin": "Mexican & Ayurvedic",
+   "ingredients": "House rice milk, KSM-66 ashwagandha, Ceylon cinnamon & vanilla bean.",
+   "benefit": "Soothes stress hormones & restores calm endurance.",
+   "section": "Shakes & Adaptogen Drinks",
+   "img": "/media/drinks/ashwagandha-horchata.jpg"
+  }
+ ]
+}

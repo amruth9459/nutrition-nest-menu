@@ -3,9 +3,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nutrition Nest — Juice Board</title>
 <style>
-@font-face{font-family:'GillLight';src:url('../../assets/fonts/gill-light.ttf')}
-@font-face{font-family:'GillBook';src:url('../../assets/fonts/gill-book.ttf')}
-@font-face{font-family:'GillSemi';src:url('../../assets/fonts/gill-semibold.ttf')}
+@font-face{font-family:'GillLight';src:url('/assets/fonts/gill-light.ttf')}
+@font-face{font-family:'GillBook';src:url('/assets/fonts/gill-book.ttf')}
+@font-face{font-family:'GillSemi';src:url('/assets/fonts/gill-semibold.ttf')}
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--obsidian:#0c0c0c;--bronze:#8b7b53;--bronze-lt:#a8986a;--white:#f1ede4;--muted:#9b968b;--line:rgba(168,152,106,.28)}
 html,body{width:100vw;height:100vh;background:var(--obsidian);overflow:hidden}
@@ -49,9 +49,9 @@ const pill=a=>`<div class="arow"><span class="an">${esc(a.name)}</span><span cla
 function fit(){const k=Math.min(innerWidth/3840,innerHeight/2160);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-3840*k)/2}px,${(innerHeight-2160*k)/2}px) scale(${k})`;}
 async function render(){
   try{
-    const d=await(await fetch('../../content/board.json?t='+Date.now(),{cache:'no-store'})).json();
+    const d=await(await fetch('/content/board.json?t='+Date.now(),{cache:'no-store'})).json();
     document.getElementById('board').innerHTML=`
-      <header><img class="wm" src="../../assets/logo/wordmark-white.png" alt="Nutrition Nest"><div class="mt">${esc(d.menuTitle||'The Elixir Menu')}</div></header>
+      <header><img class="wm" src="/assets/logo/wordmark-white.png" alt="Nutrition Nest"><div class="mt">${esc(d.menuTitle||'The Elixir Menu')}</div></header>
       <div class="eyebrow">${esc(d.eyebrow||'Choose by how you want to feel')}</div>
       <div class="egrid">${(d.pathways||[]).map(pcell).join('')}</div>
       <div class="rule"></div>
@@ -62,7 +62,7 @@ async function render(){
         <div><div class="addh">${esc(d.addons?.title)}</div><div class="pills">${(d.addons?.items||[]).map(pill).join('')}</div></div>
       </div>
       <div class="footer">${esc(d.footer)}</div>
-      <img class="brandmark" src="../../assets/logo/brandmark-white.png" alt="">`;
+      <img class="brandmark" src="/assets/logo/brandmark-white.png" alt="">`;
     fit();
   }catch(e){document.getElementById('board').innerHTML=`<div class="err">content unavailable — retrying…</div>`;}
 }
