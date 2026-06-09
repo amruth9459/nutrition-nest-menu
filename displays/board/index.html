@@ -15,7 +15,7 @@ header{display:flex;align-items:flex-end;justify-content:space-between;padding-b
 .wm{height:150px;display:block}
 .mt{font-family:'GillLight';color:var(--white);font-size:80px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 .eyebrow{font-family:'GillSemi';color:var(--bronze-lt);font-size:30px;letter-spacing:.4em;text-transform:uppercase;text-align:center;margin:46px 0 8px}
-.egrid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:46px 70px;height:880px;margin-top:40px}
+.egrid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:46px 70px;height:818px;margin-top:24px}
 .pcell{display:flex;flex-direction:column;justify-content:center}
 .phead{display:flex;align-items:baseline;gap:18px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid var(--line)}
 .pn{font-family:'GillLight';color:var(--white);font-size:46px;letter-spacing:.14em;text-transform:uppercase}
@@ -24,7 +24,7 @@ header{display:flex;align-items:flex-end;justify-content:space-between;padding-b
 .drow:last-child{margin-bottom:0}
 .dn{font-family:'GillBook';color:var(--white);font-size:46px;line-height:1.14;flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .dp{font-family:'GillSemi';color:var(--bronze-lt);font-size:40px;white-space:nowrap;flex-shrink:0}
-.rule{height:1px;background:var(--line);margin:40px 0}
+.rule{height:1px;background:var(--line);margin:26px 0}
 .lower{display:grid;grid-template-columns:1fr 1fr 1fr 1.7fr;gap:64px}
 .lh{font-family:'GillSemi';color:var(--bronze-lt);font-size:28px;letter-spacing:.26em;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:20px}
 .lrow{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px}
@@ -35,7 +35,14 @@ header{display:flex;align-items:flex-end;justify-content:space-between;padding-b
 .arow{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:18px}
 .an{font-family:'GillBook';color:var(--white);font-size:35px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ap{font-family:'GillSemi';color:var(--bronze-lt);font-size:27px;white-space:nowrap;flex-shrink:0}
-.brandmark{position:absolute;right:120px;bottom:64px;width:190px;opacity:.9}
+.myours{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.myh{font-family:'GillSemi';color:var(--bronze-lt);font-size:28px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:22px}
+.myrow{display:flex;align-items:baseline;gap:38px;margin-bottom:16px}
+.myrow:last-child{margin-bottom:0}
+.myl{font-family:'GillSemi';color:var(--white);font-size:32px;letter-spacing:.18em;text-transform:uppercase;flex:0 0 170px}
+.myi{font-family:'GillBook';color:#d2cec6;font-size:32px;line-height:1.2;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.myn{font-family:'GillBook';font-style:italic;color:var(--bronze-lt);font-size:26px;letter-spacing:.04em;white-space:nowrap;flex-shrink:0}
+.brandmark{position:absolute;right:130px;bottom:58px;width:104px;opacity:.9}
 .footer{position:absolute;bottom:62px;left:130px;font-family:'GillBook';color:var(--muted);font-size:26px;letter-spacing:.12em}
 .err{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'GillBook';font-size:40px}
 </style></head>
@@ -48,6 +55,7 @@ const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
 const pcell=p=>`<div class="pcell"><div class="phead"><span class="pn">${esc(p.pathway)}</span><span class="pf">${esc(p.for)}</span></div>${(p.drinks||[]).map(x=>`<div class="drow"><span class="dn">${esc(x.name)}</span><span class="dp">${esc(x.price)}</span></div>`).join('')}</div>`;
 const col=(title,items)=>`<div class="lcol"><div class="lh">${esc(title)}</div>${(items||[]).map(x=>`<div class="lrow"><span class="ln">${esc(x.name)}</span><span class="lp">${esc(x.price)}</span></div>`).join('')}</div>`;
 const pill=a=>`<div class="arow"><span class="an">${esc(a.name)}</span><span class="ap">${esc(a.price)}</span></div>`;
+const myg=g=>`<div class="myrow"><span class="myl">${esc(g.name)}</span><span class="myi">${(g.items||[]).map(esc).join('&nbsp;&nbsp;·&nbsp;&nbsp;')}</span><span class="myn">${esc(g.note)}</span></div>`;
 function fit(){const k=Math.min(innerWidth/3840,innerHeight/2160);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-3840*k)/2}px,${(innerHeight-2160*k)/2}px) scale(${k})`;}
 async function render(){
   try{
@@ -63,6 +71,7 @@ async function render(){
         ${col(d.juices?.name,d.juices?.items)}
         <div><div class="addh">${esc(d.addons?.title)}</div><div class="pills">${(d.addons?.items||[]).map(pill).join('')}</div></div>
       </div>
+      ${d.makeYours?`<div class="myours"><div class="myh">${esc(d.makeYours.title)}</div>${(d.makeYours.groups||[]).map(myg).join('')}</div>`:''}
       <div class="footer">${esc(d.footer)}</div>
       <img class="brandmark" src="/assets/logo/brandmark-white.png" alt="">`;
     fit();

@@ -235,5 +235,38 @@
    }
   ]
  },
+ "makeYours": {
+  "title": "Make It Yours",
+  "groups": [
+   {
+    "name": "Milks",
+    "note": "house-made · +$1 specialty",
+    "items": [
+     "Walnut",
+     "Cashew",
+     "Almond",
+     "Oat",
+     "Pistachio",
+     "Coconut"
+    ]
+   },
+   {
+    "name": "Syrups",
+    "note": "first included · +$1.50 each",
+    "items": [
+     "Pomegranate",
+     "Brown Sugar Cinnamon",
+     "Mocha",
+     "Rose",
+     "Cardamom Vanilla",
+     "Lavender Honey",
+     "Ginger Turmeric",
+     "Coconut Pulp",
+     "Hibiscus Mint",
+     "Date Molasses"
+    ]
+   }
+  ]
+ },
  "footer": "Nutrition Nest · Preserve Life Corp · Ask your wellness guide to tune any drink"
 }
