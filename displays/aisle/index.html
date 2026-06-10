@@ -17,7 +17,7 @@ html,body{width:100vw;height:100vh;background:#000;overflow:hidden}
 .num span{font-family:'GillLight';font-size:150px;line-height:.92;color:var(--bronze);display:inline-block}
 .num{margin-bottom:10px;flex-shrink:0}
 .title{margin-bottom:18px;flex-shrink:0}
-.title span{font-family:'GillLight';font-size:78px;text-transform:uppercase;color:var(--text);line-height:1.04;letter-spacing:.03em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.title span{font-family:'GillLight';font-size:59px;text-transform:uppercase;color:var(--text);line-height:1.04;letter-spacing:.03em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;word-break:keep-all;hyphens:none}
 .sub{margin-bottom:30px;flex-shrink:0}
 .sub span{font-family:'GillSemi';font-size:34px;text-transform:uppercase;color:var(--bronze);line-height:1.1;display:block;letter-spacing:.18em}
 .list{flex:1;overflow:hidden}
@@ -44,15 +44,36 @@ async function L(n){try{const r=await fetch('/api/content/'+n+'?t='+Date.now(),{
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const N=new URLSearchParams(location.search).get('n')||'1';
 function fit(){const k=Math.min(innerWidth/540,innerHeight/1920);const s=document.getElementById('scaler');s.style.transform=`translate(${(innerWidth-540*k)/2}px,${(innerHeight-1920*k)/2}px) scale(${k})`;}
+// ONE uniform title size across ALL aisles = the largest that fits every title in the box,
+// wrapping at spaces but never breaking a word mid-letter. Data-driven so it stays uniform
+// (and maximal) even after an admin title edit. Capped by the longest single word (e.g. INTERNATIONAL).
+let UNIFORM_TITLE_FS=null, UNIFORM_FOR='';
+function computeUniformTitleFs(titles,refEl){
+  // measure on a CLONE of the real title element, in its real parent, so it inherits the exact
+  // loaded-font cascade (a detached probe can mis-measure with fallback metrics before the webfont applies).
+  const boxW=refEl.clientWidth||460;
+  const probe=refEl.cloneNode(false);
+  probe.removeAttribute('id');
+  probe.style.cssText='position:absolute;visibility:hidden;left:-99999px;top:0;width:'+boxW+'px;white-space:normal;letter-spacing:.03em;-webkit-line-clamp:unset;display:block;overflow-wrap:normal;word-break:keep-all;hyphens:none';
+  refEl.parentNode.appendChild(probe);
+  const fits=fs=>{probe.style.fontSize=fs+'px';for(const t of titles){probe.textContent=String(t||'');
+    if(probe.scrollWidth>boxW+1)return false;                       // a single word too wide to wrap
+    if(Math.round(probe.scrollHeight/(fs*1.04))>3)return false;}    // never exceed 3 lines
+    return true;};
+  let best=44;for(let fs=82;fs>=44;fs--){if(fits(fs)){best=fs;break;}}
+  probe.remove();return best;
+}
 function doFit(){const t=document.getElementById('t');if(!t)return;
-  // shrink the title font-size until it fits its width (handles long single words e.g. INTERNATIONAL)
-  let fs=78;t.style.fontSize=fs+'px';t.style.letterSpacing='';
-  while(t.scrollWidth>t.clientWidth+1&&fs>50){fs-=2;t.style.fontSize=fs+'px';}
-  let lsp=3;while(t.scrollWidth>t.clientWidth+1&&lsp>-5){lsp-=1;t.style.letterSpacing=lsp+'px';}
+  const titles=(window.__aisleTitles&&window.__aisleTitles.length)?window.__aisleTitles:[t.textContent];
+  const key=titles.join('|');
+  if(UNIFORM_TITLE_FS===null||UNIFORM_FOR!==key){             // recompute only when the set of titles changes
+    UNIFORM_FOR=key; UNIFORM_TITLE_FS=computeUniformTitleFs(titles,t);}
+  t.style.letterSpacing=''; t.style.fontSize=UNIFORM_TITLE_FS+'px';   // identical on every panel
   const sub=document.getElementById('s');let sls=Math.round(0.18*30);while(sub&&sub.scrollWidth>sub.clientWidth&&sls>-4){sls-=1;sub.style.letterSpacing=sls+'px';}}
 function draw(_d){
   try{
     const all=Array.isArray(_d)?_d:(_d.aisles||[]);
+    window.__aisleTitles=all.map(x=>x.title);   // all titles → uniform max title size across every panel
     const a=all.find(x=>String(x.number)===String(N))||all[0];
     const p=a.promo||{};
     document.getElementById('card').innerHTML=`
@@ -80,7 +101,13 @@ function draw(_d){
 let lastHash='';
 async function poll(){try{const _d=await L('aisles');const h=JSON.stringify(_d);if(h!==lastHash){lastHash=h;draw(_d);}}catch(e){}}
 addEventListener('resize',fit);
-(async()=>{ if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}} await poll(); })();
+(async()=>{
+  // force the actual title webfont to load BEFORE the first measure — document.fonts.ready alone can
+  // resolve before GillLight's glyph metrics apply, which would size the title off fallback metrics.
+  if(document.fonts){try{await Promise.all([document.fonts.load("60px 'GillLight'"),document.fonts.load("36px 'GillBook'"),document.fonts.load("34px 'GillSemi'")]);await document.fonts.ready;}catch(e){}}
+  await poll();
+  try{await document.fonts.ready;}catch(e){} UNIFORM_TITLE_FS=null; if(document.getElementById('t'))doFit();   // recompute once more after fonts fully settle
+})();
 setInterval(poll,5000);                     // pick up admin edits within ~5s, re-render only when content changed (no flicker)
 setInterval(async()=>{try{const r=await fetch(location.pathname+'?p='+Date.now(),{method:'HEAD',cache:'no-store'});if(r&&r.ok)location.reload();}catch(e){/* site unreachable — DON'T reload, keep showing last content so an outage never blanks the panel */}},300000);
 </script></body></html>
